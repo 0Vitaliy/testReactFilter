@@ -18,12 +18,11 @@ class App extends Component {
         var filteredList = this.state.products.filter(function(item){
             return item.name.toLowerCase().search(e.target.value.toLowerCase())!== -1;
         });
-        // обновление состояния
         this.setState({filteredList: filteredList});
     }
   render() {
         const {filteredList}=this.state;
-        console.log(this.state.productsF);
+        console.log(this.state.filteredList);
     return (
         <div>
           <input placeholder='Source' onChange={(e)=>this.filterList(e)}/>
