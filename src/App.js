@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import fetchProductsData from './api/products'
 import './App.css';
-import { Image,Row,Col,Grid,Nav,NavItem,PageHeader} from 'react-bootstrap'
+import { Image,Row,Col,Grid,Nav,NavItem} from 'react-bootstrap'
 
 class App extends Component {
     state={
@@ -70,7 +70,8 @@ class App extends Component {
                       <Row className="show-grid">
                           {category.map((results,index) =>
                               <Col xs={9} md={4} key={index}>
-
+                                  <h2 >{results.title.split(' ', 4).join(' ')}</h2>
+                                  <Image   src={results.social_image} rounded responsive />
                                   <span>Price:{results.category}</span>
 
                               </Col>
