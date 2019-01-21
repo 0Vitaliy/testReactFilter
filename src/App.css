@@ -27,6 +27,16 @@
   justify-content: space-between;
 
 }
+.flex_block{
+  display: flex;
+}
+.hed{
+    font-size: 40px;
+}
+nav a{
+  width: 200px;
+  display: block;
+}
 .products {
   text-align: center;
   margin-top: 10px;
