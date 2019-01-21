@@ -3,94 +3,94 @@ import React, { Component } from 'react';
 
 import fetchProductsData from './api/products'
 import './App.css';
-import { Image,Row,Col,Grid,Nav,NavItem} from 'react-bootstrap'
+import { Nav,NavItem} from 'react-bootstrap'
+import { Switch, Route,Link } from 'react-router-dom'
+import  ItNews from './components/ItNews/index'
+// import  ProgramNews from './components/ProgramNews/index'
 
 class App extends Component {
-    state={
-        products:[],
-        filteredList:[],
-        category:[]
-    };
-
-
-    componentDidMount(){
-        this.fetchCategry();
-        fetchProductsData()
-            .then(data => this.setState({ products:data.products ,filteredList:data.products}));
-    }
-     fetchCategry=(categ='')=>{
-      fetch('https://codeguida.com/api/v1/posts/?category='+categ)
-          .then(res=>{
-              return res.json()
-          })
-          .then(res=>{
-              this.setState({category:res.results })
-              console.log(res)
-          })
-}
-    filterList=e=>{
-        console.log(e.target.value);
-        var filteredList = this.state.products.filter(function(item){
-            return item.name.toLowerCase().search(e.target.value.toLowerCase())!== -1;
-        });
-        this.setState({filteredList: filteredList});
-    }
+//     state={
+//         products:[],
+//         filteredList:[],
+//         category:[]
+//     };
+//
+//
+//     componentDidMount(){
+//         this.fetchCategry();
+//         fetchProductsData()
+//             .then(data => this.setState({ products:data.products ,filteredList:data.products}));
+//     }
+//      fetchCategry=(categ='')=>{
+//       fetch('https://codeguida.com/api/v1/posts/?category='+categ)
+//           .then(res=>{
+//               return res.json()
+//           })
+//           .then(res=>{
+//               this.setState({category:res.results })
+//               console.log(res)
+//           })
+// }
+//     filterList=e=>{
+//         console.log(e.target.value);
+//         var filteredList = this.state.category.filter(function(item){
+//
+//             return item.title.toLowerCase().search(e.target.value.toLowerCase())!== -1;
+//         });
+//         this.setState({category: filteredList});
+//     }
   render() {
-        const {filteredList,category}=this.state;
-        console.log(this.state.filteredList);
-      console.log(category);
+
+      //   const {filteredList,category}=this.state;
+      //   console.log(this.state.filteredList);
+      // console.log(category);
 
 
     return (
         <div>
-            <input placeholder='Source' onChange={(e)=>this.filterList(e)}/>
+            {/*<input placeholder='Source' onChange={(e)=>this.filterList(e)}/>*/}
             <div className='flex_block'>
                 <Nav bsStyle="pills" stacked  >
-                    <NavItem eventKey={1}  onClick={()=>this.fetchCategry()}>
-                        Home & Kitchen
+                    <NavItem eventKey={1} >
+                            <Link to="/it_news" >ItNews</Link>
                     </NavItem>
-                    <NavItem eventKey={2} onClick={()=>this.fetchCategry('it_news')} >
-                        Sports & Outdoors
+                    <NavItem eventKey={2} >
+                        <Link to="/programming" >ProgramNews</Link>
                     </NavItem>
-                    <NavItem eventKey={3} onClick={()=>this.fetchCategry('programming')}>
-                        Health & Personal Care
-                    </NavItem>
-                    <NavItem eventKey={4} onClick={()=>this.fetchCategry('it_news')} >
-                        Baby Products
-                    </NavItem>
+
                 </Nav>
-                {/*<nav >*/}
-                    {/*<a href="#" onClick={()=>this.fetchCategry('programming')}>Home & Kitchen</a>*/}
-                    {/*<a href="#" onClick={()=>this.fetchCategry('it_news')}>Sports & Outdoors</a>*/}
-                    {/*<a href="#">Health & Personal Care</a>*/}
-                    {/*<a href="#">Baby Products</a>*/}
-                {/*</nav>*/}
-              <div className="products_block" >
-                  <Grid>
-                      <Row className="show-grid">
-                          {category.map((results,index) =>
-                              <Col xs={9} md={4} key={index}>
-                                  <h2 >{results.title.split(' ', 4).join(' ')}</h2>
-                                  <Image   src={results.social_image} rounded responsive />
-                                  <span>Price:{results.category}</span>
 
-                              </Col>
-                          )}
-                      </Row>
-                  </Grid>
-                  <Grid>
-                      <Row className="show-grid">
-                      {filteredList.map((products,index) =>
-                          <Col xs={9} md={4} key={index}>
-                              <h2 bsClass='hed'>{products.name.split(' ', 4).join(' ')}</h2>
-                              <Image   src={products.img} rounded responsive />
-                              <span>Price:{products.price}</span>
+                <Switch>
 
-                          </Col>
-                      )}
-                      </Row>
-                  </Grid>
-              </div>
+                    <Route path="/it_news" component={ItNews} />
+                    <Route path='/programming' component= {ItNews} />
+                </Switch>
+              {/*<div className="products_block" >*/}
+                  {/*<Grid>*/}
+                      {/*<Row className="show-grid">*/}
+                          {/*{category.map((results,index) =>*/}
+                              {/*<Col xs={9} md={4} key={index}>*/}
+                                  {/*<h2 >{results.title.split(' ', 4).join(' ')}</h2>*/}
+                                  {/*<Image   src={results.social_image} rounded responsive />*/}
+                                  {/*<span>Price:{results.category}</span>*/}
+
+                              {/*</Col>*/}
+                          {/*)}*/}
+                      {/*</Row>*/}
+                  {/*</Grid>*/}
+                  {/*<Grid>*/}
+                      {/*<Row className="show-grid">*/}
+                      {/*{filteredList.map((products,index) =>*/}
+                          {/*<Col xs={9} md={4} key={index}>*/}
+                              {/*<h2 bsClass='hed'>{products.name.split(' ', 4).join(' ')}</h2>*/}
+                              {/*<Image   src={products.img} rounded responsive />*/}
+                              {/*<span>Price:{products.price}</span>*/}
+
+                          {/*</Col>*/}
+                      {/*)}*/}
+                      {/*</Row>*/}
+                  {/*</Grid>*/}
+              {/*</div>*/}
 
             </div>
 
