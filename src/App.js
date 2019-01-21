@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 
-import fetchProductsData from './api/products'
 import './App.css';
 import { Nav,NavItem} from 'react-bootstrap'
 import { Switch, Route,Link } from 'react-router-dom'
-import  ItNews from './components/ItNews/index'
-// import  ProgramNews from './components/ProgramNews/index'
+import  Category from './components/ItNews/index'
+
 
 class App extends Component {
 //     state={
@@ -62,8 +61,8 @@ class App extends Component {
 
                 <Switch>
 
-                    <Route path="/it_news" component={ItNews} />
-                    <Route path='/programming' component= {ItNews} />
+                    <Route path="/it_news" component={Category} />
+                    <Route path='/programming' component= {Category} />
                 </Switch>
               {/*<div className="products_block" >*/}
                   {/*<Grid>*/}

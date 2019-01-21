@@ -4,7 +4,7 @@ import {Col, Grid, Image, Row} from "react-bootstrap";
 
 import fetchProductsData from "../../api/category";
 
-class ItNews extends Component{
+class Category extends Component{
     state={
         category:[],
         filteredList:[],
@@ -61,4 +61,4 @@ class ItNews extends Component{
 }
 
 
-export default ItNews
+export default Category
