@@ -10,11 +10,11 @@ class Category extends Component{
         filteredList:[],
     };
     componentWillReceiveProps(nextProps){
-        const catg=nextProps.match.path.split('').slice(1).join('');
+        const catg= nextProps.match.path.split('').slice(1).join('');
         console.log(catg);
         fetchProductsData(catg)
             .then(res=>{
-                this.setState({category:res.results,filteredList:res.results })
+                this.setState({category:res.results,filteredList:res.results });
                 console.log(res.results);
 
             })
@@ -23,13 +23,12 @@ class Category extends Component{
 
         fetchProductsData()
             .then(res=>{
-                this.setState({category:res.results,filteredList:res.results })
+                this.setState({category:res.results,filteredList:res.results})
                 console.log(res.results);
 
             })
     }
     filterList=e=>{
-        console.log(e.target.value);
         var filteredList = this.state.category.filter(function(item){
 
             return item.title.toLowerCase().search(e.target.value.toLowerCase())!== -1;
@@ -49,7 +48,7 @@ class Category extends Component{
                             <Col xs={9} md={4} key={index}>
                                 <h2 >{results.title.split(' ', 4).join(' ')}</h2>
                                 <Image   src={results.social_image} rounded responsive />
-                                <span>Price:{results.category}</span>
+                                <span>Category:{results.category}</span>
 
                             </Col>
                         )}
